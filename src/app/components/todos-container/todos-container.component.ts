@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosContainerComponent implements OnInit {
 
-  test = "Testing this component";
+  title = "Breakthrough TodoApp under Mike's supervision";
   constructor() { }
 
   ngOnInit(): void {
