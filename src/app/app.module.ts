@@ -17,7 +17,7 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     AppComponent,
     TodosContainerComponent,
-    TodoTableComponent,
+    TodoTableComponent
   ],
   imports: [
     BrowserModule,

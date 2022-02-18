@@ -2,7 +2,15 @@ h2 {
   text-align: center;
 }
 
-.add-button{
-  text-align: center;
-  padding: 10px;
+.footer{
+  display: flex;
+  width: 95%;
+  margin:auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.buttons button {
+  margin: 0 8px;
 }
