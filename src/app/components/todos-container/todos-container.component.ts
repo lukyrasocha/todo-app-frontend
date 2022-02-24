@@ -47,7 +47,7 @@ export class TodosContainerComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result)
       
-      //result.dateAdded =
+      result.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
       this.todoService.create(result).subscribe()
     });
   }
