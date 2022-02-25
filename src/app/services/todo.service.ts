@@ -22,8 +22,6 @@ export class TodoService {
   }
 
   create(todo:ITodo):Observable<any> {
-    console.log("------------------")
-    console.log(todo)
     return this.http.post(`${baseUrl}/todos`,todo)
   }
 
