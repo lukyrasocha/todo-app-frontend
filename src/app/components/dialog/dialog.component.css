@@ -1,4 +1,16 @@
 .button-div {
+  display: flex;
+  width: 95%;
+  margin:auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+h1 {
   text-align: center;
-  margin: auto;
+}
+
+.mat-dialog{
+  text-align: center;
 }

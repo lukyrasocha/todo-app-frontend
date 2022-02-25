@@ -4,6 +4,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {ITodo} from "../../../../interfaces/ITodo";
 import {EStatuses} from "../../../../enums/Estatus";
 import {TodoService} from "../../services/todo.service";
+import { IUser } from 'interfaces/IUser';
 
 @Component({
   selector: 'app-todos-container',
@@ -12,43 +13,58 @@ import {TodoService} from "../../services/todo.service";
 })
 export class TodosContainerComponent implements OnInit {
   title = "Breakthrough TodoApp under Mike's supervision";
-  constructor(private matDialog:MatDialog,private todoService: TodoService) { }
+  users?:IUser[]
+
+  constructor(private matDialog:MatDialog,private todoService: TodoService) { 
+     //Get all users in the DB
+     this.todoService.getUsers()
+     .subscribe(
+       data => {
+         this.users = data;
+       },
+       error => {
+         console.log(error)
+       }
+     )
+  }
 
   ngOnInit(): void {
   }
 
-  onOpenDialogClick(){
+   onOpenDialogClick(){
     const todo:ITodo = {
       title: "",
       assignee: {
-        email: "robert@gmail.com",
-        name: "Robert Spralja"
-      },
-      assigned: {
         email: "lukas@gmail.com",
         name: "Lukas Rasocha"
+      },
+      assigned: {
+        email: "",
+        name: ""
       },
       category: 1,
       status: EStatuses.ASSIGNED,
       description: "",
-      dateAdded: "2022-02-11 17:46:26",
+      dateAdded: "",
       dateCompleted: null
     }
 
     const dialogRef = this.matDialog.open(DialogComponent, {
-      data: todo,
-      width:"250px",
-      height:"350px"
+      data: {emptyTodo:todo, users:this.users},
+      width:"400px",
+      height:"450px"
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result.cancelled){
+    
+     if (typeof result == 'undefined'){
+       return
+     }
+     if (result.cancelled){
         return
-      }
-      console.log('The dialog was closed');
-      console.log(result)
-      
-      result.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      this.todoService.create(result).subscribe()
+      } 
+
+      result.emptyTodo.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      this.todoService.create(result.emptyTodo).subscribe()
     });
   }
 

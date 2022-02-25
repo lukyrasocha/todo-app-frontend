@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ITodo} from "../../../../interfaces/ITodo";
+import { ITodo } from 'interfaces/ITodo';
+import { IUser } from 'interfaces/IUser';
 
 @Component({
   selector: 'app-dialog',
@@ -9,8 +10,8 @@ import {ITodo} from "../../../../interfaces/ITodo";
 })
 export class DialogComponent implements OnInit {
   cancelled=false
-  constructor(public dialogRef: MatDialogRef<DialogComponent>,@Inject(MAT_DIALOG_DATA) public data:ITodo) { }
-
+  constructor(public dialogRef: MatDialogRef<DialogComponent>,@Inject(MAT_DIALOG_DATA) public data:{emptyTodo:ITodo,users:IUser[]}) { }
+  
   ngOnInit(): void {
   }
   onNoClick(): void {
