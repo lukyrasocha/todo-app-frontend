@@ -10,7 +10,7 @@ import { IUser } from 'interfaces/IUser';
 })
 export class DialogComponent implements OnInit {
   cancelled=false
-  constructor(public dialogRef: MatDialogRef<DialogComponent>,@Inject(MAT_DIALOG_DATA) public data:{emptyTodo:ITodo,users:IUser[]}) { }
+  constructor(public dialogRef: MatDialogRef<DialogComponent>,@Inject(MAT_DIALOG_DATA) public data:{todo:ITodo,users:IUser[]}) { }
   
   ngOnInit(): void {
   }

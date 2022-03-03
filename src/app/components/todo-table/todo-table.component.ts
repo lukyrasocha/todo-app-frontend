@@ -1,11 +1,8 @@
 import {Component, Injectable, OnInit } from '@angular/core';
 import { ITodo } from "../../../../interfaces/ITodo";
 import { TodoService } from "../../services/todo.service";
-//import { MatTable } from '@angular/material/table';
 import { MatTable } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
-
-
 
 @Component({
   selector: 'todo-table',
@@ -39,18 +36,8 @@ export class TodoTableComponent implements OnInit {
 
   
   deleteTodoClick(id:string):void{
-    console.log(id)
-    //alert("Successfully deleted")
     this.todoService.delete(id).subscribe()
     this.listTodos();
-    console.log(this.myTable)
     this.myTable.renderRows();   
-
-  }
-
-  update():void{
-    this.listTodos()
-    console.log(this.myTable)
-    this.myTable.renderRows()
   }
 }

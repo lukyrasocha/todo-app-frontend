@@ -32,7 +32,7 @@ export class TodosContainerComponent implements OnInit {
   }
 
    onOpenDialogClick(){
-    const todo:ITodo = {
+    const emptyTodo:ITodo = {
       title: "",
       assignee: {
         email: "lukas@gmail.com",
@@ -49,7 +49,7 @@ export class TodosContainerComponent implements OnInit {
     }
 
     const dialogRef = this.matDialog.open(DialogComponent, {
-      data: {emptyTodo:todo, users:this.users},
+      data: {todo:emptyTodo, users:this.users},
       width:"400px",
       height:"450px"
     });
@@ -62,8 +62,8 @@ export class TodosContainerComponent implements OnInit {
         return
       } 
 
-      result.emptyTodo.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      this.todoService.create(result.emptyTodo).subscribe()
+      result.todo.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      this.todoService.create(result.todo).subscribe()
     });
   }
 
