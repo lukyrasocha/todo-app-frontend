@@ -5,6 +5,8 @@ import {ITodo} from "../../../../interfaces/ITodo";
 import {EStatuses} from "../../../../enums/Estatus";
 import {TodoService} from "../../services/todo.service";
 import { IUser } from 'interfaces/IUser';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-todos-container',
@@ -57,7 +59,7 @@ export class TodosContainerComponent implements OnInit {
 
     if(result){
       if(!result.cancelled){
-      result.todo.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      result.todo.dateAdded = moment(new Date()).format("YYYY-MM-DD HH:mm:ss") 
       this.todoService.create(result.todo).subscribe()
       }
     }
