@@ -46,7 +46,6 @@ export class TodosContainerComponent implements OnInit {
       status: EStatuses.ASSIGNED,
       description: "",
       dateAdded: "",
-      dateCompleted: null
     }
 
     const dialogRef = this.matDialog.open(DialogComponent, {

@@ -11,7 +11,7 @@ export interface ITodo {
    status: EStatuses;
    description: string;
    dateAdded: string;
-   dateCompleted: string | null;
+   dateCompleted?: string;
    updated?: boolean;
 }
 
