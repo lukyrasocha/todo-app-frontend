@@ -35,8 +35,8 @@ export class TodosContainerComponent implements OnInit {
     const emptyTodo:ITodo = {
       title: "",
       assignee: {
-        email: "lukas@gmail.com",
-        name: "Lukas Rasocha"
+        email: "",
+        name: ""
       },
       assigned: {
         email: "",
@@ -50,8 +50,8 @@ export class TodosContainerComponent implements OnInit {
 
     const dialogRef = this.matDialog.open(DialogComponent, {
       data: {todo:emptyTodo, users:this.users},
-      width:"400px",
-      height:"450px"
+      width:"450px",
+      height:"550px"
     });
     dialogRef.afterClosed().subscribe(result => {
     
