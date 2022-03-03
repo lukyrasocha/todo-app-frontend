@@ -13,11 +13,11 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  listTodos():Observable<ITodo[]>{
+  list():Observable<ITodo[]>{
     return this.http.get<ITodo[]>(`${baseUrl}/todos`)
   }
 
-  getTodo(id:string):Observable<ITodo>{
+  get(id:string):Observable<ITodo>{
     return this.http.get<ITodo>(`${baseUrl}/todos/${id}`)
   }
 
@@ -33,7 +33,4 @@ export class TodoService {
     return this.http.put(`${baseUrl}/todos`,todo)
   }
 
-  getUsers():Observable<IUser[]>{
-    return this.http.get<IUser[]>(`${baseUrl}/users`)
-  }
 }
