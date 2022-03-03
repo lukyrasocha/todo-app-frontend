@@ -1,7 +1,7 @@
 <h2>{{title}}</h2>
-<todo-table></todo-table>
+<todo-table *ngIf="todos" [item]="todos"></todo-table>
 <div class = "footer">
-  <div>Todos(5)</div>
+  <div>Todos({{numberOfTodos}})</div>
   <div class ="buttons">
   <button (click)="onOpenDialogClick()" mat-raised-button color="primary">Add Todo</button>
   </div>

@@ -4,6 +4,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {ITodo} from "../../../../interfaces/ITodo";
 import {EStatuses} from "../../../../enums/Estatus";
 import {TodoService} from "../../services/todo.service";
+import { UserService } from 'src/app/services/user.service';
 import { IUser } from 'interfaces/IUser';
 import * as moment from 'moment';
 
@@ -14,12 +15,15 @@ import * as moment from 'moment';
   styleUrls: ['./todos-container.component.css']
 })
 export class TodosContainerComponent implements OnInit {
+  currentItem = 'Television';
+  todos?:ITodo[];
   title = "Breakthrough TodoApp under Mike's supervision";
-  users?:IUser[]
+  users?:IUser[];
+  numberOfTodos?:number;
 
-  constructor(private matDialog:MatDialog,private todoService: TodoService) { 
+  constructor(private matDialog:MatDialog,private todoService: TodoService,private userService:UserService) { 
      //Get all users in the DB
-     this.todoService.getUsers()
+     this.userService.get()
      .subscribe(
        data => {
          this.users = data;
@@ -28,9 +32,22 @@ export class TodosContainerComponent implements OnInit {
          console.log(error)
        }
      )
+     
   }
 
+  
+
   ngOnInit(): void {
+    this.todoService.list()
+      .subscribe(
+        data => {
+          this.todos = data;
+          this.numberOfTodos = this.todos.length
+        },
+        error => {
+          console.log(error)
+        }
+      )
   }
 
    onOpenDialogClick(){
