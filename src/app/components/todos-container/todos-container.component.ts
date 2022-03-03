@@ -54,16 +54,13 @@ export class TodosContainerComponent implements OnInit {
       height:"550px"
     });
     dialogRef.afterClosed().subscribe(result => {
-    
-     if (typeof result == 'undefined'){
-       return
-     }
-     if (result.cancelled){
-        return
-      } 
 
+    if(result){
+      if(!result.cancelled){
       result.todo.dateAdded = new Date().toISOString().slice(0, 19).replace('T', ' ');
       this.todoService.create(result.todo).subscribe()
+      }
+    }
     });
   }
 
