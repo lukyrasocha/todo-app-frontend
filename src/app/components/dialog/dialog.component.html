@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Add a todo</h1>
+<div mat-dialog-content class="mat-dialog">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="data.todo.title">
+  </mat-form-field><br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Ex. Finish second part of my homework..." [(ngModel)]="data.todo.description"></textarea>
+  </mat-form-field><br>
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="data.todo.category">
+        <mat-option value="1">Easy</mat-option>
+        <mat-option value="2">Moderate</mat-option>
+        <mat-option value="3">Urgent</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field appearance="fill">
+      <mat-label>Assignee</mat-label>
+      <mat-select [(value)]="data.todo.assignee">
+        <mat-option *ngFor="let option of data.users" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field appearance="fill">
+      <mat-label>Assigned</mat-label>
+      <mat-select [(value)]="data.todo.assigned">
+        <mat-option *ngFor="let option of data.users" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="button-div">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>
